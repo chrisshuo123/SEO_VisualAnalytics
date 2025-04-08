@@ -1,6 +1,6 @@
 use keyword_db_mp_experiment;
 
-/* 1 - Group Profile */
+/* 1 - GROUP PROFILE */
 create table profile (
 	idProfile int(10) primary key auto_increment,
     tanggalInput timestamp not null default current_timestamp,
@@ -16,3 +16,23 @@ alter table namaTokoMarketplace
 	add column tanggalInput timestamp not null default current_timestamp after idNamaToko;
 describe namaTokoMarketplace;
 
+/* 2 - GROUP LAPORAN */
+create table laporan (
+	idLaporan int(10) primary key auto_increment,
+    waktuLaporanDibuat DATETIME not null
+);
+alter table laporan
+	add column tanggalInput timestamp not null default current_timestamp after idLaporan;
+alter table laporan
+	add column idPeriode_fk int(10) after waktuLaporanDibuat;
+describe laporan;
+
+create table periode (
+	idPeriode int(10) primary key,
+    periode varchar(100)
+);
+alter table periode
+	add column tanggalInput timestamp not null default current_timestamp after idPeriode;
+select * from periode;
+
+use keyword_db_mp_experiment;
