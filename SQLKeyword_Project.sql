@@ -180,4 +180,33 @@ create table kata_kunci_platform_a (
 );
 describe kata_kunci_platform_a;
 
+/* 3.1.7 - Membuat table untuk menampung Pilihan FK bagi Table ke 3.1.1 - 3.1.6. */
+create table tipe_iklan_platform_a (
+    idTipeIklanPlatformA int(10) primary key,
+    tanggalInput timestamp not null default current_timestamp,
+    tipeIklanPlatformA varchar(100)
+);
+describe tipe_iklan_platform_a;
+
+create table status_platform_a (
+    idStatusPlatformA int(10) primary key,
+    tanggalInput timestamp not null default current_timestamp,
+    statusPlatformA varchar(100)
+);
+describe status_platform_a;
+
+create table tipe_pencarian_platform_a (
+    idTipePencarianPlatformA int(10) primary key,
+    tanggalInput timestamp not null default current_timestamp,
+    tipePencarianPlatformA varchar(100)
+);
+describe tipe_pencarian_platform_a;
+
+create table tipe_kata_kunci_platform_a (
+    idTipeKataKunciPlatformA int(10) primary key,
+    tanggalInput timestamp not null default current_timestamp,
+    tipeKataKunciPlatformA varchar(100)
+);
+describe tipe_kata_kunci_platform_a;
+
 use keyword_db_mp_experiment;
