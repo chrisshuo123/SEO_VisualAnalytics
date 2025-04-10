@@ -29,6 +29,8 @@ alter table laporan
 	add column tanggalInput timestamp not null default current_timestamp after idLaporan;
 alter table laporan
 	add column idPeriode_fk int(10) after waktuLaporanDibuat;
+alter table laporan
+	add foreign key (idPeriode_fk) references periode(idPeriode);
 describe laporan;
 
 create table periode (
@@ -67,6 +69,11 @@ create table semua_Iklan_Produk_Platform_a (
     persentaseTerjual decimal(10,2),
     rataRata int(10)
 );
+
+alter table semua_Iklan_Produk_Platform_a
+	add foreign key (idTipeIklanPlatformA_fk) references tipe_iklan_platform_a(idTipeIklanPlatformA),
+    add foreign key (idStatusPlatformA_fk) references status_platform_a(idStatusPlatformA);
+
 describe semua_Iklan_Produk_Platform_a;
 
 /* 3.1.2 - Iklan Produk Direkomendasi di Platform A */
@@ -91,6 +98,11 @@ create table iklan_produk_direkomendasi_platform_a (
     persentaseTerjual decimal(10,2),
     rataRata int(10)
 );
+
+alter table iklan_produk_direkomendasi_platform_a
+	add foreign key (idTipeIklanPlatformA_fk) references tipe_iklan_platform_a(idTipeIklanPlatformA),
+	add foreign key (idStatusPlatformA_fk) references status_platform_a(idStatusPlatformA); 
+
 describe iklan_produk_direkomendasi_platform_a;
 
 /* 3.1.3 - Iklan Produk di Pencarian Platform A */
@@ -115,6 +127,11 @@ create table iklan_produk_pencarian_platform_a (
     persentaseTerjual decimal(10,2),
     rataRata int(10)
 );
+
+alter table iklan_produk_pencarian_platform_a
+	add foreign key (idTipeIklanPlatformA_fk) references tipe_iklan_platform_a(idTipeIklanPlatformA),
+	add foreign key (idStatusPlatformA_fk) references status_platform_a(idStatusPlatformA);
+
 describe iklan_produk_pencarian_platform_a;
 
 /* 3.1.4 - Iklan Toko di Platform A */
@@ -135,6 +152,11 @@ create table iklan_toko_platform_a (
     persentaseTerjual decimal(10,2),
     rataRata int(10)
 );
+
+alter table iklan_toko_platform_a
+	add foreign key (idTipeIklanPlatformA_fk) references tipe_iklan_platform_a(idTipeIklanPlatformA),
+	add foreign key (idStatusPlatformA_fk) references status_platform_a(idStatusPlatformA);
+
 describe iklan_toko_platform_a;
 
 /* 3.1.5 - Laporan Pencarian di Platform A */
@@ -155,6 +177,10 @@ create table laporan_pencarian_platform_a (
     rataRata int(10),
     tampilTeratas int(10)
 );
+
+alter table laporan_pencarian_platform_a
+	add foreign key (idTipeIklanPlatformA_fk) references tipe_iklan_platform_a(idTipeIklanPlatformA);
+
 describe laporan_pencarian_platform_a;
 
 /* 3.1.6 - Kata Kunci di Platform A */
@@ -178,6 +204,13 @@ create table kata_kunci_platform_a (
     rataRata int(10),
     tampilTeratas int(10)
 );
+
+alter table kata_kunci_platform_a
+add foreign key (idTipeIklanPlatformA_fk) references tipe_iklan_platform_a(idTipeIklanPlatformA),
+add foreign key (idStatusPlatformA_fk) references status_platform_a(idStatusPlatformA),
+add foreign key (idTipePencarianPlatformA_fk) references tipe_pencarian_platform_a(idTipePencarianPlatformA),
+add foreign key (idTipeKataKunciPlatformA_fk) references tipe_kata_kunci_platform_a(idTipeKataKunciPlatformA);
+
 describe kata_kunci_platform_a;
 
 /* 3.1.7 - Membuat table untuk menampung Pilihan FK bagi Table ke 3.1.1 - 3.1.6. */
