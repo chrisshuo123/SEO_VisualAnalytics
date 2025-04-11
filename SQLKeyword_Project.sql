@@ -16,9 +16,10 @@ create table namaTokoMarketplace (
 	idNamaToko int(10) primary key auto_increment,
     idToko int(10)
 );
-alter table namaTokoMarketplace
+alter table nama_toko_marketplace
 	add column tanggalInput timestamp not null default current_timestamp after idNamaToko;
-describe namaTokoMarketplace;
+rename table namaTokoMarketplace to nama_toko_marketplace;
+describe nama_toko_marketplace;
 
 /* === 2 - GROUP LAPORAN === */
 create table laporan (
@@ -41,12 +42,46 @@ alter table periode
 	add column tanggalInput timestamp not null default current_timestamp after idPeriode;
 select * from periode;
 
+/* Creating the Many-to-Many (M:N) Relationship to Integrate the Whole Report according
+to the report (laporan), Shop Name (namaTokoMarketplace), and its Period (Periode). */
+create table laporan_marketplace (
+	idLaporanMarketplace int(10) primary key auto_increment,
+    tanggalInput timestamp not null default current_timestamp,
+    idLaporan_fk int(10),
+    idNamaToko_fk int(10),
+    /* Laporan Platform A */
+    idSemuaIklanProduk_fk int(10),
+    idIklanRekomendasi_fk int(10),
+    idIklanPencarian_fk int(10),
+    idIklanTokoPlatformA_fk int(10),
+    idLaporanPencarian_fk int(10),
+    idKataKunci_fk int(10),
+    /* Laporan Platform B */
+    idDataKeseluruhan_fk int(10),
+    idKataPencarian_fk int(10)
+);
+
+/* New FK Constraint Process*/
+alter table laporan_marketplace
+	add foreign key (idLaporan_fk) references laporan(idLaporan),
+    add foreign key (idNamaToko_fk) references nama_toko_marketplace(idNamaToko),
+    add foreign key (idSemuaIklanProduk_fk) references semua_iklan_produk_platform_a(idSemuaIklanProduk),
+    add foreign key (idIklanRekomendasi_fk) references iklan_produk_direkomendasi_platform_a(idIklanRekomendasi),
+    add foreign key (idIklanPencarian_fk) references iklan_produk_pencarian_platform_a(idIklanPencarian),
+	add foreign key (idIklanTokoPlatformA_fk) references iklan_toko_platform_a(idIklanTokoPlatformA),
+    add foreign key (idLaporanPencarian_fk) references laporan_pencarian_platform_a(idLaporanPencarian),
+    add foreign key (idKataKunci_fk) references kata_kunci_platform_a(idKataKunci),
+    add foreign key (idDataKeseluruhan_fk) references data_keseluruhan_iklan_platform_b(idDataKeseluruhan),
+    add foreign key (idKataPencarian_fk) references laporan_penempatan_kata_pencarian_iklan_platform_b(idKataPencarian);
+/* ------------- */
+
+describe laporan_marketplace;
+
 /* === 3 - GROUP MARKETPLACE PLATFORMS === */
 /* Let's call this platforms Alphabetically, starts from A to Z. */
 /* Mari kita sebut contoh platform ini dalam huruf Alfabet secara A - Z. */
 
 /* -- 3.1 - GROUP IKLAN PlatformMP_A -- */
-
 /* 3.1.1 - Semua Iklan Produk Platform A */
 create table semua_Iklan_Produk_Platform_a (
     idSemuaIklanProduk int(10) primary key auto_increment,
