@@ -342,4 +342,135 @@ drop table tipe_kata_kunci_platform_a;
 
 describe tipe_kata_kunci_platform_a;
 
+/* -- 3.2 - GROUP IKLAN PlatformMP_B -- */
+/* 3.2.1 - Kata Kunci di Platform B */
+create table data_Keseluruhan_Iklan_Platform_B (
+	idDataKeseluruhan int(10) primary key auto_increment,
+    tanggalInput timestamp not null default current_timestamp,
+    namaIklan Varchar(100) not null,
+    idStatusPlatformB_fk int(10),
+    idJenisIklan_fk int(10),
+    kodeProduk varchar(10),
+    tampilanIklan varchar(100),
+    idModeBidding_fk int(10),
+    idPenempatanIklan_fk int(10),
+    tglMulai DATETIME,
+    tglSelesai DATETIME,
+    dilihat int(10),
+    jumlahKlik int(10),
+    persentaseKlik decimal(10,2),
+    konversi decimal(10,2),
+    konversiLangsung decimal(10,2),
+    tingkatKonversi decimal(10,2),
+    tingkatKonversiLangsung decimal(10,2),
+    biayaPerKonversi int(10),
+    biayaPerKonversiLangsung int(10),
+    produkTerjual int(10),
+    terjualLangsung int(10),
+    omsetPenjualan bigint(20),
+    penjualanLangsungGMV bigint(20),
+    biaya int(10),
+    efektivitasIklan decimal(10,2),
+    efektivitasLangsung decimal(10,2),
+    acos decimal(10,2),
+    acosLangsung decimal(10,2),
+    jumProdukDilihat int(10),
+    jumKlikProduk int(10),
+    persentaseKlikProduk decimal(10,2)
+);
+
+/* Add FK Constraint Process */
+alter table data_Keseluruhan_Iklan_Platform_B
+	add foreign key (idStatusPlatformB_fk) references status_platform_b(idStatusPlatformB),
+    add foreign key (idJenisIklan_fk) references jenis_iklan_platform_b(idJenisIklan),
+    add foreign key (idModeBidding_fk) references mode_bidding_platform_b(idModeBidding),
+    add foreign key (idPenempatanIklan_fk) references penempatan_iklan_platform_b(idPenempatanIklan);
+    
+/* ------------------- */
+
+describe data_Keseluruhan_Iklan_Platform_B;
+
 use keyword_db_mp_experiment;
+
+create table laporan_Penempatan_Kata_Pencarian_Iklan_Platform_B (
+    idKataPencarian int(10) primary key auto_increment,
+    tanggalInput timestamp not null default current_timestamp,
+    /* Yang dari table kelompok */
+    namaIklan Varchar(100) not null,
+    idStatusPlatformB_fk int(10),
+    idJenisIklan_fk int(10),
+    kodeProduk varchar(10),
+    tampilanIklan varchar(100),
+    idModeBidding_fk int(10),
+    idPenempatanIklan_fk int(10),
+    kataPencarianPenempatan int(10),
+    idTipePencocokan_fk int(10),
+    tglMulai DATETIME,
+    tglSelesai DATETIME,
+    dilihat int(10),
+    jumlahKlik int(10),
+    persentaseKlik decimal(10,2),
+    konversi decimal(10,2),
+    konversiLangsung decimal(10,2),
+    tingkatKonversi decimal(10,2),
+    tingkatKonversiLangsung decimal(10,2),
+    biayaPerKonversi int(10),
+    biayaPerKonversiLangsung int(10),
+    produkTerjual int(10),
+    terjualLangsung int(10),
+    omsetPenjualan bigint(20),
+    penjualanLangsungGMV bigint(20),
+    biaya int(10),
+    efektivitasIklan decimal(10,2),
+    efektivitasLangsung decimal(10,2),
+    acos decimal(10,2),
+    acosLangsung decimal(10,2),
+    jumProdukDilihat int(10),
+    jumKlikProduk int(10),
+    persentaseKlikProduk decimal(10,2)
+);
+
+/* Add FK Constraint Process */
+alter table laporan_Penempatan_Kata_Pencarian_Iklan_Platform_B
+	add foreign key (idStatusPlatformB_fk) references status_platform_b(idStatusPlatformB),
+    add foreign key (idJenisIklan_fk) references jenis_iklan_platform_b(idJenisIklan),
+    add foreign key (idModeBidding_fk) references mode_bidding_platform_b(idModeBidding),
+    add foreign key (idPenempatanIklan_fk) references penempatan_iklan_platform_b(idPenempatanIklan),
+	add foreign key (idTipePencocokan_fk) references tipe_pencocokan_platform_b(idTipePencocokan);
+    
+/* ------------------- */
+
+create table status_platform_b (
+    idStatusPlatformB int(10) primary key,
+    tanggalInput timestamp not null default current_timestamp,
+    status Varchar(100)
+);
+
+create table jenis_iklan_platform_b (
+    idJenisIklan int(10) primary key,
+    tanggalInput timestamp not null default current_timestamp,
+    jenisIklan Varchar(100)
+);
+describe jenis_iklan_platform_b;
+
+create table mode_bidding_platform_b (
+	idModeBidding int(10) primary key,
+    tanggalInput timestamp not null default current_timestamp,
+    modeBidding varchar(100)
+);
+describe mode_bidding_platform_b;
+
+create table penempatan_iklan_platform_b (
+	idPenempatanIklan int(10) primary key,
+    tanggalInput timestamp not null default current_timestamp,
+    penempatanIklan varchar(100)
+);
+describe penempatan_iklan_platform_b;
+
+create table tipe_pencocokan_platform_b (
+    idTipePencocokan int(10) primary key,
+    tanggalInput timestamp not null default current_timestamp,
+    tipePencocokan Varchar(100)
+);
+describe tipe_pencocokan_platform_b;
+
