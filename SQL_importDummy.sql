@@ -47,3 +47,17 @@ SET
 	rataRata = CAST(@rataRata AS DECIMAL(10,2));
 
 select * from iklan_toko_platform_a;
+
+/* Ads 5: Laporan 'Kata Kunci' Platform A (Laporan Dummy) */
+LOAD DATA INFILE 'D:/5 - PixelMind ID (Coding, Photo Editing, Digital Marketing)/33.1_Keyword MP DB/2 - Untuk Portfolio & Project/SQL Keyword Project & Experiment/csvDataDummies_foodAPIMimesis/platform_a/5_kata_kunci_platform_a.csv'
+INTO TABLE kata_kunci_platform_a
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(namaGrup,kataKunci,pengeluaran,pendapatan,totalEfektivitasIklan,efektivitasIklan,tampil,klik,persentaseKlik,terjual,totTerjual,@rataRata,@tampilTeratas)
+SET
+	rataRata = CAST(@rataRata AS DECIMAL(10,2)),
+	tampilTeratas = CAST(@tampilTeratas AS DECIMAL(10,2));
+
+select * from kata_kunci_platform_a;
