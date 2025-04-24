@@ -512,3 +512,39 @@ create table tipe_pencocokan_platform_b (
 );
 describe tipe_pencocokan_platform_b;
 
+/* Add FK Data */
+use keyword_marketplace_db;
+use keyword_db_mp_experiment;
+
+/* 1. Tipe Iklan Platform A */
+insert into tipe_iklan_platform_a (idTipeIklanPlatformA, tipeIklanPlatformA)
+	values
+		(1,'Iklan Produk'),(2,'Iklan Toko');
+
+select * from tipe_iklan_tokped;
+select * from tipe_iklan_platform_a;
+describe tipe_iklan_platform_a;
+
+/* 2. Status Platform A */
+insert into status_platform_a (idStatusPlatformA, statusPlatformA)
+	values
+		(1,'Aktif'),(2,'Tidak Tampil'),(3,'Sudah Terhapus');
+
+select * from status_tokped;
+select * from status_platform_a;
+
+/* 3. Tipe Pencarian Platform A */
+insert into tipe_pencarian_platform_a (idTipePencarianPlatformA, tipePencarianPlatformA)
+	values
+		(1,'Pencarian Luas'),(2,'Pencarian Spesifik');
+
+select * from tipe_pencarian_tokped;
+select * from tipe_pencarian_platform_a;
+
+/* 4. Tipe Kata Kunci Platform A */
+insert into tipe_kata_kunci_platform_a(idtipeKataKunciPlatformA, tipeKataKunciPlatformA)
+	values
+		(1,'Kata Kunci Positif'),(2,'Kata Kunci Negatif');
+
+select * from tipe_kata_kunci_tokped;
+select * from tipe_kata_kunci_platform_a;
