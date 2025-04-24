@@ -8,5 +8,5 @@ IGNORE 1 ROWS
 SET
 	rataRata = CAST(@rataRata AS DECIMAL(10,2));
 
-select * from iklan_produk_rekomend_tokped;
+select * from iklan_produk_direkomendasi_platform_a;
 /* Berjumlah 89 rows, dengan PK idIklanRekomendasi berkisar 1-89 */
