@@ -296,6 +296,9 @@ create table kata_kunci_platform_a (
 );
 
 alter table kata_kunci_platform_a
+add column kataKunci varchar(100) after namaGrup;
+
+alter table kata_kunci_platform_a
 add foreign key (idTipeIklanPlatformA_fk) references tipe_iklan_platform_a(idTipeIklanPlatformA),
 add foreign key (idStatusPlatformA_fk) references status_platform_a(idStatusPlatformA),
 add foreign key (idTipePencarianPlatformA_fk) references tipe_pencarian_platform_a(idTipePencarianPlatformA),
