@@ -19,6 +19,8 @@ create table namaTokoMarketplace (
 alter table nama_toko_marketplace
 	add column tanggalInput timestamp not null default current_timestamp after idNamaToko;
 rename table namaTokoMarketplace to nama_toko_marketplace;
+alter table nama_toko_marketplace
+	add column namaToko varchar(100) after tanggalInput;
 describe nama_toko_marketplace;
 
 /* === 2 - GROUP LAPORAN === */
@@ -40,7 +42,7 @@ create table periode (
 );
 alter table periode
 	add column tanggalInput timestamp not null default current_timestamp after idPeriode;
-select * from periode;
+describe periode;
 
 /* Creating the Many-to-Many (M:N) Relationship to Integrate the Whole Report according
 to the report (laporan), Shop Name (namaTokoMarketplace), and its Period (Periode). */
