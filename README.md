@@ -7,7 +7,7 @@ Servers, Front-Ends will be available soon.
 **Status:** HALT - Due to Indonesian Marketplace Monopoly Case by changing Manual Keywords analysis into GMV so we'll never read manual keyword analysis anymore that cause this project in a complete Halt.
 
 **What's Done:**
-- ✅ MySQL RDBMS for platformA _(green bird logo previously, but merge with the music logo with dark background)_ and platformB _(orange marketplace)_ Performance Report.  This will be reverted.
+- ✅ MySQL RDBMS for platformA _(green bird logo previously, but merge with the music logo with dark background)_ and platformB _(orange marketplace)_ Keyword Performance Report.
 
 **On progress:**
 - ⌛ Create CRUD Panel and MVC for Marketplace
